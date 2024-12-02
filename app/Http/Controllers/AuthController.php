@@ -6,18 +6,29 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function login() {
+    public function login()
+    {
         return view('login');
     }
 
-    public function loginSubmit(Request $request) {
+    public function loginSubmit(Request $request)
+    {
         //dd($request); //dump&die
 
         // form validation
         $request->validate(
+            // rules
             [
-                'text_username' => 'required',
-                'text_password' => 'required'
+                'text_username' => 'required|email',
+                'text_password' => 'required|min:6|max:16'
+            ],
+            // error messages
+            [
+                'text_username.required' => 'O Username é obrigatório',
+                'text_username.email' => 'Username deve ser um e-mail válido',
+                'text_password.required' => 'A Password é obrigatória',
+                'text_password.min' => 'A Password deve ter no mínimo :min caracteres',
+                'text_password.max' => 'A Password deve ter no máximo :max caracteres'
             ]
         );
         // Obs.: o Laravel cria automaticamente um objeto $errors e volta para a página anterior com esse objeto
@@ -29,7 +40,8 @@ class AuthController extends Controller
         echo 'OK!';
     }
 
-    public function logout() {
+    public function logout()
+    {
         echo "logout";
     }
 }
