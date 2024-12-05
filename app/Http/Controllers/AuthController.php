@@ -66,8 +66,8 @@ class AuthController extends Controller
             ]
         ]);
 
-        echo date_default_timezone_get() . '<br>';
-        echo 'Login com Sucesso!';
+        // redirect to home
+        return redirect()->to('/');
     }
 
     public function logout()
