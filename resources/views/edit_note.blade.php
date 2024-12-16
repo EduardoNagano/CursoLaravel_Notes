@@ -22,6 +22,7 @@
                 <!-- form -->
                 <form action="{{ route('editNoteSubmit') }}" method="post">
                     @csrf
+                    <input type="hidden" name="note_id" value="{{ Crypt::encrypt($note->id) }}">
                     <div class="row mt-3">
                         <div class="col">
                             <div class="mb-3">
@@ -47,7 +48,7 @@
                             <a href="{{ route('home') }}" class="btn btn-primary px-5"><i
                                     class="fa-solid fa-ban me-2"></i>Cancel</a>
                             <button type="submit" class="btn btn-secondary px-5"><i
-                                    class="fa-regular fa-circle-check me-2"></i>Save</button>
+                                    class="fa-regular fa-circle-check me-2"></i>Update</button>
                         </div>
                     </div>
                 </form>
