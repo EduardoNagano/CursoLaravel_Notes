@@ -11,7 +11,7 @@ class Operations
     {
         // check if $value is ecrypted
         try {
-            $value - Crypt::decrypt($value);
+            $value = Crypt::decrypt($value);
         } catch (DecryptException $e) {
             return redirect()->route('home');
         }
